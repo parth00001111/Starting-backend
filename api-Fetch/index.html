@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function getAnimalnData() {
+       fetch("https://randomuser.me/api/?results=10")
+        .then(function(response) {
+            response.json()//json object me badlo
+            .then(function(finalData) {
+                console.log(finalData);
+            })
+        })
+    }//touch one
+    async function getAnimalDta() {
+        const response = await fetch("https://randomuser.me/api/?results=10");
+        const finalData = await response.json();
+        console.log(finalData);
+        
+        
+    }//easy one
+    </script>
+    <button onclick="getAnimalnData()">Get Animal Data</button>
+</body>
+</html>
