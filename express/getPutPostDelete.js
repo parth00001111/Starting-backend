@@ -6,6 +6,7 @@ const users = [{
         healthy: false
     }]
 }];
+// Get Request
 app.get('/', function (req, res) {
     const parthKidneys = users[0].kidneys;
     const numberOfKidneys = parthKidneys.length;
@@ -23,8 +24,9 @@ app.get('/', function (req, res) {
         numberofUnHealthyKidneys
     })
 });
+//used app.use for post request
 app.use(express.json());
-
+//Post Request
 app.post('/', function (req, res) {
     const isHealthy = req.body.isHealthy;
     users[0].kidneys.push({
