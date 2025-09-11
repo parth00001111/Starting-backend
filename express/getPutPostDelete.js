@@ -1,21 +1,24 @@
-const express = require('express'); 
-const app = express(); 
+const express = require('express');
+const app = express();
+
 const users = [{
-    name: "parth",
+    name: "parth", 
     kidneys: [{
         healthy: false
     }]
 }];
-// Get Request
+//GET request 
+
 app.get('/', function (req, res) {
     const parthKidneys = users[0].kidneys;
     const numberOfKidneys = parthKidneys.length;
     let numberofHealthyKidneys = 0;
-    
-    for (let i = 0; i < parthKidneys.length; i++) {
+    for (let i = 0 ; i < users[0].kidneys.length; i++) {
         if(parthKidneys[i].healthy) {
             numberofHealthyKidneys++;
+
         }
+
     }
     let numberofUnHealthyKidneys = numberOfKidneys - numberofHealthyKidneys;
     res.json({
@@ -24,9 +27,11 @@ app.get('/', function (req, res) {
         numberofUnHealthyKidneys
     })
 });
-//used app.use for post request
+//used app.use
+
 app.use(express.json());
-//Post Request
+
+//used POST request
 app.post('/', function (req, res) {
     const isHealthy = req.body.isHealthy;
     users[0].kidneys.push({
@@ -35,5 +40,15 @@ app.post('/', function (req, res) {
     res.json({
         msg: "done"
     })
-});
+})
+//used PUT request
+
+app.put ('/', function (req,res) {
+    for (let i = 0; i < users[0].kidneys.length; i++) {
+        users[0].kidneys[i].healthy = true;
+    }
+    res.json({
+        msg: "done"
+    })
+})
 app.listen(3000);
